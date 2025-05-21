@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Connexion - Ferme Biogood</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-image: url('https://files.catbox.moe/j3xjse.png');
+      background-size: cover;
+      background-attachment: fixed;
+      color: #fffbe6;
+    }
+
+    .navbar {
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar .title {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 100px auto;
+      padding: 40px;
+      background-color: rgba(66, 43, 13, 0.75);
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 10px;
+      background-color: #d49a5b;
+      color: white;
+      font-size: 16px;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      background-color: #8b5a2b;
+      color: white;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #a06633;
+    }
+
+    .back {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+      color: #f5deb3;
+      text-decoration: none;
+    }
+
+    .back:hover {
+      color: white;
+    }
+
+    #message {
+      text-align: center;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="title">Ferme Biogood</div>
+    <a href="./index.html">← Retour</a>
+  </div>
+
+  <div class="container">
+    <h2>🔐 Connexion entreprise</h2>
+    <form id="loginForm">
+      <input type="text" id="username" name="username" placeholder="Nom d'utilisateur" required>
+      <input type="password" id="password" name="password" placeholder="Mot de passe" required>
+      <input type="submit" value="Se connecter">
+    </form>
+    
+    <p id="message"></p>
+    
+    <a class="back" href="./index.html">← Revenir à l’accueil</a>
+  </div>
+
+  <script>
+    const users = {
+      "turner.diego": "diegot9",
+      "hunt.aaron": "aaronh7",
+      "gonzales.malya": "malyag22",
+      "barnett.john": "john77",
+      "foltzer.sophie": "soph10",
+      "hernandez.andres": "andresh27",
+      "muchadov.ivar": "ivar23",
+      "jefferson.patt": "pattj6",
+      "alvarez.julio": "juli62",
+      "alvarez.santi": "sant84",
+      "alvize.luciano": "luci71",
+      "bankston.bradford": "brad21",
+      "blieyorv.kopp": "kopp38",
+      "brown.john": "john11",
+      "carter.ryan": "ryan08",
+      "collins.william": "will67",
+      "cruz.ezekiel": "ezek49",
+      "delia.gabriella": "gabi02",
+      "djoudi.toufik": "touf15",
+      "fernando.ramos": "ramo04",
+      "hernandez.kastor": "kast13",
+      "james.williams": "jame36",
+      "lopez.amelia": "amei44",
+      "luciano.julio": "juli22",
+      "mantilla.eldan": "elda20",
+      "marcelo.oliveira": "oliv95",
+      "marzani.dilara": "dila06",
+      "marzani.nour": "nour55",
+      "mendoza.reyes": "reye17",
+      "mendoza.selena": "sele81",
+      "monty.shaw": "shaw68",
+      "parker.james": "jame33",
+      "pearce.reyza": "reyz98",
+      "olvido.valeria": "valeriaolv43",
+      "rolanski.onika": "onik97",
+      "salazar.oswaldo": "oswa66",
+      "brawks.jaylen": "jaylenbr61",
+      "scof.michael": "mich41",
+      "silvadias.leandro": "lensi76",
+      "silva.remy": "rems0410",
+      "green.bobby": "bobbygr48",
+      "summer.draiko": "draa82",
+      "teeway.beckers": "beck39",
+      "ward.davon": "davo45",
+      "wase.bienvenue": "bien30",
+      "adlt.massimo": "massimoad3",
+      "turner.leyla": "leylatnr23",
+      "braga.horacio": "horaciob90",
+      "davis.aaron": "aarond6",
+      "hill.darius": "dariushl4",
+      "kazadi.stevy": "stevykzd1",
+      "lawson.kyle":  "kylelwsn9",
+      "mackenzie.marcus": "marcusmkz6",
+      "pickles.billy": "billypck65",
+      "warren.erza": "erzawrn89",
+      "turner.kingsley": "kingsleytnr48",
+      "wagner.elias" : "eliaswgnr64",
+      "quince.carillo": "carilloqce19",
+      "mitchell.ava": "avamitch14",
+      "brown.johnson": "johnsonbr86",
+      "carter.tyrone": "tyronecrt40",
+      "canas.ramon": "ramoncns54",
+      "quintero.alma": "almaqtn25",
+      "kreshnik.zefir": "zefirksn54",
+      "morina.valon": "valonmrn67",
+      "miller.jamal": "jamalmlr25",
+      "stokes.khalil": "khalilst54",  
+      "king.ezra": "ezrakng67",  
+      "jackson.melissa": "melissajck21",  
+      "jackson.shorty": "shortyjck64",  
+      "njenda.mungiki": "mungikinjd83",  
+      "nambinintsoa.kaiss": "kaissnbt48",  
+      "conor.anna": "annacnr97",
+      "gutierrez.eros": "erosgtz51",
+      "akinyi.mungiki": "mungikiak541",
+      "williams.tayron": "tayronwlm847",
+      "lozano.alejandro":  "alejandrolzn51",
+      "king.norah": "norahkg55",
+      "schmidt.georges":  "georges.sch54",
+      "munoz.antonio" : "antoniomnz45",
+      "berishka.aleksander" :  "alekbr13",
+      "kurt.gray":  "graykrt98",
+      "carl.johnson": "johnsoncrl54",
+      "wise.felicite": "felicitews14",
+      "brook.tanisha": "tanishabr88",
+      "mcreary.kenan": "kenanmc45",
+      "canas.maria" : "mariacns56",
+      "hoti.marek" : "marekht21",
+      "medina.julio" : "juliomdn45",
+      };
+
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const username = document.getElementById("username").value.toLowerCase();
+      const password = document.getElementById("password").value;
+      const message = document.getElementById("message");
+
+      if (users[username] && users[username] === password) {
+        message.style.color = "#c1f2a7";
+        message.textContent = "✅ Connexion réussie. Redirection...";
+
+        // ✅ On stocke l'utilisateur dans sessionStorage
+        sessionStorage.setItem("username", username);
+
+        setTimeout(() => {
+            window.location.href = "dashboard.html"; // ou "commande.html"
+        }, 1500);
+        }
+        else {
+        message.style.color = "#ffd1d1";
+        message.textContent = "❌ Identifiant ou mot de passe incorrect.";
+      }
+    });
+  </script>
+</body>
+</html>
